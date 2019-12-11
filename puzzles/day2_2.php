@@ -1,5 +1,5 @@
 <?php
-$myfile = fopen("./inputs/day2.txt", "r") or die("Unable to open file!");
+$myfile = fopen("./inputs/day2_2.txt", "r") or die("Unable to open file!");
 $string = '';
 while(!feof($myfile)) {
     //call function with the input
@@ -8,5 +8,6 @@ while(!feof($myfile)) {
 $array = explode(',', $string);
 
 $intcodeComputer = new IntcodeComputer(4);
-echo $intcodeComputer->interpretProgramme($array)[0];
+$result = $intcodeComputer->interpretProgrammeWithExpectedResult($array, 19690720);
+print_r(100 * $result[0] + $result[1]);
 fclose($myfile);
