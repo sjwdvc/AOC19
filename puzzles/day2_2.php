@@ -5,9 +5,14 @@ while(!feof($myfile)) {
     //call function with the input
     $string .= fgets($myfile);
 }
+fclose($myfile);
 $array = explode(',', $string);
 
 $intcodeComputer = new IntcodeComputer(4);
 $result = $intcodeComputer->interpretProgrammeWithExpectedResult($array, 19690720);
-print_r(100 * $result[0] + $result[1]);
-fclose($myfile);
+if($result){
+    print_r(100 * $result[0] + $result[1]);
+}
+else{
+    echo 'Geen geldidge combinatie gevonen';
+}

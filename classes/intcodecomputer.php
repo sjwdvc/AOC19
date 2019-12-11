@@ -8,26 +8,7 @@ class IntcodeComputer{
     }
 
     public function interpretProgramme($array){
-        $pointer = 0;
-        while($pointer < count($array)){
-            switch($array[$pointer]){
-                case 1:
-                    $array[$array[$pointer+3]] = $array[$array[$pointer+1]] +  $array[$array[$pointer + 2]];
-                    $pointer += $this->step;
-                    break;
-                case 2:
-                    $array[$array[$pointer+3]] = $array[$array[$pointer+1]] *  $array[$array[$pointer + 2]];
-                    $pointer += $this->step;
-                    break;
-                case 99:
-                    $pointer = count($array) +1;
-                    $pointer += 1;
-                    break;
-                default:
-                    return 'Something went wrong when interpreting the programme';
-            }
-        }
-        return $array;
+        return $this->interpret($array);
     }
 
     public function interpretProgrammeWithExpectedResult($array, $expectedResult){
@@ -39,26 +20,8 @@ class IntcodeComputer{
                 $arrayCopy[1] = $noun = $i;
                 $arrayCopy[2] = $verb =$j;
 
-                $pointer = 0;
-                while($pointer < count($arrayCopy)){
-                    switch($arrayCopy[$pointer]){
-                        case 1:
-                            $arrayCopy[$arrayCopy[$pointer+3]] = $arrayCopy[$arrayCopy[$pointer+1]] +  $arrayCopy[$arrayCopy[$pointer + 2]];
-                            $pointer += $this->step;
-                            break;
-                        case 2:
-                            $arrayCopy[$arrayCopy[$pointer+3]] = $arrayCopy[$arrayCopy[$pointer+1]] *  $arrayCopy[$arrayCopy[$pointer + 2]];
-                            $pointer += $this->step;
-                            break;
-                        case 99:
-                            $pointer = count($arrayCopy) +1;
-                            $pointer += 1;
-                            break;
-                        default:
-                            return 'Something went wrong when interpreting the programme';
-                    }
-                }
-                if($arrayCopy[0] == $expectedResult){
+                $result = $this->interpret($arrayCopy);
+                if($result[0] == $expectedResult){
                     return [$noun, $verb];
                 }
             }
@@ -80,6 +43,29 @@ class IntcodeComputer{
     public function setStep($step)
     {
         $this->step = $step;
+    }
+
+    private function interpret($array){
+        $pointer = 0;
+        while($pointer < count($array)){
+            switch($array[$pointer]){
+                case 1:
+                    $array[$array[$pointer+3]] = $array[$array[$pointer+1]] +  $array[$array[$pointer + 2]];
+                    $pointer += $this->step;
+                    break;
+                case 2:
+                    $array[$array[$pointer+3]] = $array[$array[$pointer+1]] *  $array[$array[$pointer + 2]];
+                    $pointer += $this->step;
+                    break;
+                case 99:
+                    $pointer = count($array) +1;
+                    $pointer += 1;
+                    break;
+                default:
+                    return 'Something went wrong when interpreting the programme';
+            }
+        }
+        return $array;
     }
 
 }
