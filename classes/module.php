@@ -1,7 +1,5 @@
 <?php
 
-use function Sodium\crypto_aead_chacha20poly1305_decrypt;
-
 class Module{
     private $mass = 0;
     private $fuelRequired = 0;

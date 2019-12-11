@@ -8,7 +8,14 @@
 <body>
 
 <?php
+    echo 'Dag 1 output: ';
     include('./puzzles/day1.php');
+    echo '<br><br>';
+
+    echo 'Dag 2 output: ';
+    include('./puzzles/day2.php');
+    echo '<br><br>';
+
 ?>
 
 
