@@ -2,10 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Javascript - associative arrays</title>
+    <title>AOC</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+<?php
+    include('./puzzles/day1.php');
+?>
 
 
 <script src="js/script.js"></script>
